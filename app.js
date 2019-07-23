@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const handleBars = require('express-handlebars');
 const sassMiddleware = require('node-sass-middleware');
+const browserify = require('browserify-middleware');
 
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -24,6 +25,7 @@ app.use(
     debug: true
   })
 );
+app.get('/javascripts/bundle.js', browserify('./client/script.js'));
 
 app.use(logger('dev'));
 app.use(express.json());
