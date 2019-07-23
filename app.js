@@ -1,6 +1,8 @@
 const createError = require('http-errors');
 const express = require('express');
 const handleBars = require('express-handlebars');
+const sassMiddleware = require('node-sass-middleware');
+
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -14,6 +16,14 @@ const app = express();
 // view engine setup
 app.engine('hbs', handleBars({ extname: '.hbs', defaultLayout: 'layout' }));
 app.set('view engine', 'hbs');
+
+app.use(
+  sassMiddleware({
+    src: __dirname + '/sass',
+    dest: __dirname + '/public',
+    debug: true
+  })
+);
 
 app.use(logger('dev'));
 app.use(express.json());
