@@ -4,6 +4,9 @@ const handleBars = require('express-handlebars');
 const mongoose = require('mongoose');
 const sassMiddleware = require('node-sass-middleware');
 const browserify = require('browserify-middleware');
+const bodyParser = require('body-parser');
+const todos = require('./routes/todos/index');
+const todosAPI = require('./routes/todos/api');
 
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -14,6 +17,10 @@ const usersRouter = require('./routes/users');
 const todosRouter = require('./routes/todos');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use('/todos', todos);
+app.use('/api/todos', todosAPI);
 
 // view engine setup
 app.engine('hbs', handleBars({ extname: '.hbs', defaultLayout: 'layout' }));
