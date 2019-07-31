@@ -29,13 +29,37 @@ router
       .error(console.error);
   });
 
-router.route('/:id').get(function(req, res, next) {
-  Todo.findOneAsync({ _id: req.params.id }, { text: 1, done: 1 })
-    .then(function(todo) {
-      res.json(todo);
-    })
-    .catch(next)
-    .error(console.error);
-});
+router
+  .route('/:id')
+  .get(function(req, res, next) {
+    Todo.findOneAsync({ _id: req.params.id }, { text: 1, done: 1 })
+      .then(function(todo) {
+        res.json(todo);
+      })
+      .catch(next)
+      .error(console.error);
+  })
+  .put(function(req, res, next) {
+    const todo = {};
+    for (const prop in req.body) {
+      todo[prop] = req.body[prop];
+    }
+    Todo.updateAsync({ _id: req.params.id }, todo)
+      .then(function(updatedTodo) {
+        return res.json({ status: 'success', todo: updatedTodo });
+      })
+      .catch(function(e) {
+        return res.status(400).json({ status: 'fail', error: e });
+      });
+  })
+  .delete(function(req, res, next) {
+    Todo.findByIdAndRemoveAsync(req.params.id)
+      .then(function(deletedTodo) {
+        res.json({ status: 'success', todo: deletedTodo });
+      })
+      .catch(function(e) {
+        res.status(400).json({ status: 'fail', error: e });
+      });
+  });
 
 module.exports = router;
