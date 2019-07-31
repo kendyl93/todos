@@ -1,3 +1,10 @@
-var todos = ['buy flight tickets', 'book a hotel room', 'pack your bags'];
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = todos;
+const TodoSchema = new Schema({
+  text: { type: String, required: true },
+  done: { type: Boolean }
+});
+
+const Todo = mongoose.model('Todo', TodoSchema);
+module.exports = Todo;
