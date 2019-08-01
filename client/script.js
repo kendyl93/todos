@@ -111,4 +111,24 @@ $(function() {
       deleteTodoLi($li);
     });
   });
+
+  const updateTodoCount = function() {
+    $('.count').text($('li').length);
+  };
+
+  const initTodoObserver = function() {
+    var target = $('ul')[0];
+    var config = { attributes: true, childList: true, characterData: true };
+    var observer = new MutationObserver(function(mutationRecords) {
+      $.each(mutationRecords, function(index, mutationRecord) {
+        updateTodoCount();
+      });
+    });
+    if (target) {
+      observer.observe(target, config);
+    }
+    updateTodoCount();
+  };
+
+  initTodoObserver();
 });

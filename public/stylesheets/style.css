@@ -11,3 +11,7 @@ body {
     list-style-type: none; }
     body ul .checked span {
       text-decoration: line-through; }
+
+.footer div {
+  float: left;
+  padding: 0 10px; }
