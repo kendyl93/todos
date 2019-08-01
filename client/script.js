@@ -112,14 +112,45 @@ $(function() {
     });
   });
 
+  $('.clear').on('click', function() {
+    const $doneLi = $('.checked').closest('li');
+    for (var i = 0; i < $doneLi.length; i++) {
+      const $li = $($doneLi[i]); //you get a li out, and still need to convert into $li
+      const id = $li.attr('id');
+      (function($li) {
+        deleteTodo(id, function() {
+          deleteTodoLi($li);
+        });
+      })($li);
+    }
+  });
+
+  $('.filter').on('click', '.show-all', function() {
+    $('.hide').removeClass('hide');
+  });
+
+  $('.filter').on('click', '.show-not-done', function() {
+    $('.hide').removeClass('hide');
+    $('.checked')
+      .closest('li')
+      .addClass('hide');
+  });
+
+  $('.filter').on('click', '.show-done', function() {
+    $('li').addClass('hide');
+    $('.checked')
+      .closest('li')
+      .removeClass('hide');
+  });
+
   const updateTodoCount = function() {
     $('.count').text($('li').length);
   };
 
   const initTodoObserver = function() {
-    var target = $('ul')[0];
-    var config = { attributes: true, childList: true, characterData: true };
-    var observer = new MutationObserver(function(mutationRecords) {
+    const target = $('ul')[0];
+    const config = { attributes: true, childList: true, characterData: true };
+    const observer = new MutationObserver(function(mutationRecords) {
       $.each(mutationRecords, function(index, mutationRecord) {
         updateTodoCount();
       });
