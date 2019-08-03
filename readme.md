@@ -13,3 +13,5 @@ I have created this simple app to learn whole flow building app from scrach. Dur
 - CRUD
 - REST
 - Heroku
+
+This app will be improved in my free time 😊.
