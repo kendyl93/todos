@@ -4,7 +4,6 @@ const todoTemplate = require('../views/partials/todo.hbs');
 $(function() {
   const addTodo = function() {
     const text = $('#add-todo-text').val();
-    console.log({ text });
     $.ajax({
       url: '/api/todos',
       type: 'POST',
