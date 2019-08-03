@@ -42,8 +42,9 @@ browserify.settings({
 
 app.get('/javascripts/bundle.js', browserify('./client/script.js'));
 
-const dbConnectionString = process.env.MONGODB_URI || 'mongodb://localhost';
-mongoose.connect(dbConnectionString + '/todos');
+const dbConnectionString =
+  process.env.MONGODB_URI || 'mongodb://localhost/todos';
+mongoose.connect(dbConnectionString);
 
 if (app.get('env') == 'development') {
   var browserSync = require('browser-sync');
