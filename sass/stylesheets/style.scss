@@ -1,9 +1,12 @@
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
 $font-stack: 'Lucida Grande', Helvetica, Arial, sans-serif;
 $primary-link-color: #00b7ff;
 
 body {
   padding: 50px;
   font: 14px $font-stack;
+
   a {
     color: $primary-link-color;
     text-decoration: none;
@@ -13,6 +16,7 @@ body {
       color: red;
     }
   }
+
   ul {
     list-style-type: none;
     .checked {
@@ -30,4 +34,69 @@ body {
 
 .hide {
   display: none;
+}
+
+.navbar-default {
+  background-image: none;
+  background-color: #e74c3c;
+  border-color: #c0392b;
+
+  .navbar-brand {
+    color: #ecf0f1;
+
+    &:hover,
+    &:focus {
+      cursor: default;
+      color: #ecf0f1;
+    }
+  }
+}
+
+.navbar-brand {
+  color: #ecf0f1;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  margin: auto;
+  font-size: 25px;
+
+  &:hover,
+  &:focus {
+    cursor: default;
+    color: #ecf0f1;
+  }
+}
+
+.todos {
+  margin-top: 20px;
+}
+
+.form-control {
+  height: 33px;
+}
+
+.btn-outline-danger {
+  border: solid 1px red;
+  color: red;
+
+  &:hover {
+    background-color: red;
+    color: white;
+  }
+}
+
+.btn-outline-primary {
+  border: solid 1px #00b7ff;
+  color: #00b7ff;
+
+  &:hover {
+    background-color: #00b7ff;
+    color: white;
+  }
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
 }
