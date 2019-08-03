@@ -15,13 +15,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const todosRouter = require('./routes/todos');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/todos', todos);
+
+app.use('/', todos);
 app.use('/api/todos', todosAPI);
 
 // view engine setup
@@ -76,9 +76,7 @@ app.use(
   )
 );
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/todos', todosRouter);
+app.use('/', todosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
