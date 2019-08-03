@@ -7,6 +7,8 @@ const browserify = require('browserify-middleware');
 const bodyParser = require('body-parser');
 const todos = require('./routes/todos/index');
 const todosAPI = require('./routes/todos/api');
+const dotenv = require('dotenv');
+require('dotenv').config();
 
 const path = require('path');
 const cookieParser = require('cookie-parser');
